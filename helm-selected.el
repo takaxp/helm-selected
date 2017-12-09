@@ -45,7 +45,8 @@
 
 (defun helm-selected--action (candidate)
   "An action for selected item specified by `CANDIDATE'."
-  (call-interactively (intern candidate)))
+  (when (string-match "^.+\t\\(.*\\)$" candidate)
+    (call-interactively (intern (match-string 1 candidate)))))
 
 (defun helm-selected--candidates ()
   "Generate a list of candidates form `selected-keymap' or extended keymap."
@@ -57,7 +58,8 @@
   "Create a list from the specified `KEYMAP'."
   (if (keymapp keymap)
       (loop for i in (cdr keymap)
-            when (consp i) collect (cdr i))
+            when (consp i)
+            collect (format "(%s)\t%s" (string (car i)) (cdr i)))
     (error "The argument is NOT keymap")))
 
 (defun helm-selected--major-map ()
