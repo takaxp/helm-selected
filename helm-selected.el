@@ -81,7 +81,7 @@
   (let ((map
          (concat "selected-" (format "%s" helm-selected--major-mode) "-map")))
     (when (intern-soft map)
-      (unintern map)))
+      (unintern map nil)))
   (setq helm-selected--major-mode nil))
 
 (advice-add 'selected--on :before #'helm-selected--on)

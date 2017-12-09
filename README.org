@@ -9,10 +9,10 @@ This package is an =helm= extension for =selected.el=. =selected.el= provides a 
 #+BEGIN_SRC emacs-lisp
 (with-eval-after-load "selected"
   (when (require 'helm-selected nil t)
-    (define-key selected-keymap (kbd "p") 'helm-selected)))
+    (define-key selected-keymap (kbd "h") 'helm-selected)))
 #+END_SRC
 
-After you select a region in your emacs buffer, just type =p=, then a command menu will be popping up.
+After you select a region in your emacs buffer, just type =h=, then a command menu will be popping up.
 
 * Contacts
 
