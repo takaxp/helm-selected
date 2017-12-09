@@ -1,1 +1,20 @@
-A helm extension for selected.el
+#+TITLE: A helm extension for selected.el
+
+* Introduction
+
+This package is an =helm= extension for =selected.el=. =selected.el= provides a combined keymap with associated commands for the selected region like a popup menu when you right-click on a selected word in your document. The menu, however, will not be displayed in an emacs buffer. So this package provides a visible menu with command candidates with supporting of =helm= interface.
+
+* Recommended setting
+
+#+BEGIN_SRC emacs-lisp
+(with-eval-after-load "selected"
+  (when (require 'helm-selected nil t)
+    (define-key selected-keymap (kbd "p") 'helm-selected)))
+#+END_SRC
+
+After you select a region in your emacs buffer, just type =p=, then a command menu will be popping up.
+
+* Contacts
+
+Contact me by Twitter [[https://twitter.com/takaxp][@takaxp]].
+
