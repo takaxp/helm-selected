@@ -1,5 +1,5 @@
 ;;; helm-selected.el --- helm extension for selected.el  -*- lexical-binding: t; -*-
-;; Copyright (C) 2011-2017 Takaaki ISHIKAWA
+;; Copyright (C) 2017 Takaaki ISHIKAWA
 ;;
 ;; Author: Takaaki ISHIKAWA <takaxp at ieee dot org>
 ;; Keywords: extensions, convenience
@@ -78,6 +78,10 @@
 (defun helm-selected-off ()
   "An advice function for `selected-off'."
   (interactive)
+  (let ((map
+         (concat "selected-" (format "%s" helm-selected--major-mode) "-map")))
+    (when (intern-soft map)
+      (unintern map)))
   (setq helm-selected--major-mode nil))
 
 (advice-add 'selected--on :before #'helm-selected--on)
