@@ -78,11 +78,15 @@
 (defun helm-selected-off ()
   "An advice function for `selected-off'."
   (interactive)
+  (helm-selected--banish-major-mode-map)
+  (setq helm-selected--major-mode nil))
+
+(defun helm-selected--banish-major-mode-map ()
+  "Unintern selected-<major-mode>-map."
   (let ((map
          (concat "selected-" (format "%s" helm-selected--major-mode) "-map")))
     (when (intern-soft map)
-      (unintern map nil)))
-  (setq helm-selected--major-mode nil))
+      (unintern map nil))))
 
 (advice-add 'selected--on :before #'helm-selected--on)
 (advice-add 'selected-off :after #'helm-selected-off)
@@ -91,10 +95,10 @@
 (defun helm-selected ()
   "Select from selected commands to execute."
   (interactive)
-  (if mark-active
-      (helm :sources '(helm-selected--source)
-            :buffer "*helm selected*")
-    (message "No region is selected.")))
+  (when mark-active
+    (helm :sources '(helm-selected--source)
+          :buffer "*helm selected*")
+    (helm-selected--banish-major-mode-map)))
 
 (provide 'helm-selected)
 
