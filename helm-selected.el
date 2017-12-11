@@ -59,7 +59,12 @@
   (if (keymapp keymap)
       (loop for i in (cdr keymap)
             when (consp i)
-            collect (format "(%s)\t%s" (string (car i)) (cdr i)))
+            unless (string= "helm-selected" (format "%s" (cdr i)))
+            collect (format "(%s)\t%s"
+                            (let ((key (car i)))
+                              (if (characterp key)
+                                  (string key) key))
+                            (cdr i)))
     (error "The argument is NOT keymap")))
 
 (defun helm-selected--major-map ()
