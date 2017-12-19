@@ -3,7 +3,7 @@
 ;;
 ;; Author: Takaaki ISHIKAWA <takaxp at ieee dot org>
 ;; Keywords: extensions, convenience
-;; Version: 0.9.0
+;; Version: 0.9.1
 ;; Maintainer: Takaaki ISHIKAWA <takaxp at ieee dot org>
 ;; URL: https://github.com/takaxp/helm-selected
 ;; Package-Requires: ((emacs "24.4") (helm "2.8.6") (selected "1.01"))
@@ -92,11 +92,11 @@
   "Unintern selected-<major-mode>-map."
   (let ((map
          (concat "selected-" (format "%s" helm-selected--major-mode) "-map")))
-    (when (intern-soft map)
+    (unless (boundp (intern-soft map))
       (unintern map nil))))
 
-(advice-add 'selected--on :before #'helm-selected--on)
-(advice-add 'selected-off :after #'helm-selected-off)
+(advice-add 'selected--on :after #'helm-selected--on)
+(advice-add 'selected-off :before #'helm-selected-off)
 
 ;;;###autoload
 (defun helm-selected ()
