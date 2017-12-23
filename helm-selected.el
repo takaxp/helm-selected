@@ -28,7 +28,7 @@
 
 ;;; Code:
 (eval-when-compile
-  (require 'cl))
+  (require 'cl-lib))
 
 (require 'helm)
 (require 'selected)
@@ -57,7 +57,7 @@
 (defun helm-selected--get-commands (keymap)
   "Create a list from the specified `KEYMAP'."
   (if (keymapp keymap)
-      (loop for i in (cdr keymap)
+      (cl-loop for i in (cdr keymap)
             when (consp i)
             unless (string= "helm-selected" (format "%s" (cdr i)))
             collect (format "(%s)\t%s"
