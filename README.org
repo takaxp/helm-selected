@@ -2,7 +2,7 @@
 
 * Introduction
 
-That packages is an =helm= extension for =selected.el=. =selected.el= provides a combined keymap with associated commands for the selected region like a popup menu when you right-click on a selected word in your document. The menu, however, will not be displayed in an emacs buffer. So this package provides a visible menu with command candidates by supporting of =helm= interface.
+That packages is a =helm= extension for =selected.el=. =selected.el= provides a combined keymap with associated commands for the selected region like a popup menu when you right-click on a selected word in your document. The menu, however, will not be displayed in an emacs buffer. So this package provides a visible menu with command candidates by supporting of =helm= interface.
 
 * Recommended setting
 
