@@ -18,3 +18,9 @@ After you select a region in your emacs buffer, just type =h=, then a command me
 
 Contact me by Twitter [[https://twitter.com/takaxp][@takaxp]].
 
+* References
+ - https://github.com/takaxp/counsel-selected
+ - https://oremacs.com/swiper/
+ - https://github.com/abo-abo/swiper
+
+
